@@ -15,8 +15,8 @@ public class Battle {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < 3; i++){
-            for (int j = 0; j < 3; j++){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 result.append(chess[i][j]);
                 result.append(" ");
             }
@@ -28,19 +28,19 @@ public class Battle {
         System.out.println(new Battle("", "").toString());
     }*/
 
-    public void draw(String name, int x, int y){
+    public void draw(String name, int x, int y) {
         step++;
-        if (name.equals(player1)){
+        if (name.equals(player1)) {
             chess[x][y] = 1;
-        } else if (name.equals(player2)){
+        } else if (name.equals(player2)) {
             chess[x][y] = -1;
         }
     }
 
-    public boolean isFull(){
-        for (int i = 0; i < 3; i++){
-            for (int j = 0; j < 3; j++){
-                if (chess[i][j] == 0){
+    public boolean isFull() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (chess[i][j] == 0) {
                     return false;
                 }
             }
@@ -48,71 +48,71 @@ public class Battle {
         return true;
     }
 
-    public String win(){
-        if (chess[0][0] + chess[0][1] + chess[0][2] == 3){
+    public String win() {
+        if (chess[0][0] + chess[0][1] + chess[0][2] == 3) {
             return player1;
         }
 
-        if (chess[1][0] + chess[1][1] + chess[1][2] == 3){
+        if (chess[1][0] + chess[1][1] + chess[1][2] == 3) {
             return player1;
         }
 
-        if (chess[2][0] + chess[2][1] + chess[2][2] == 3){
-            return player1;
-        }
-
-
-        if (chess[0][0] + chess[1][0] + chess[2][0] == 3){
-            return player1;
-        }
-
-        if (chess[0][1] + chess[1][1] + chess[2][1] == 3){
-            return player1;
-        }
-
-        if (chess[0][2] + chess[1][2] + chess[2][2] == 3){
-            return player1;
-        }
-
-        if(chess[0][0] + chess[1][1] + chess[2][2] == 3){
-            return player1;
-        }
-
-        if(chess[0][2] + chess[1][1] + chess[2][0] == 3){
+        if (chess[2][0] + chess[2][1] + chess[2][2] == 3) {
             return player1;
         }
 
 
-        if (chess[0][0] + chess[0][1] + chess[0][2] == -3){
+        if (chess[0][0] + chess[1][0] + chess[2][0] == 3) {
+            return player1;
+        }
+
+        if (chess[0][1] + chess[1][1] + chess[2][1] == 3) {
+            return player1;
+        }
+
+        if (chess[0][2] + chess[1][2] + chess[2][2] == 3) {
+            return player1;
+        }
+
+        if (chess[0][0] + chess[1][1] + chess[2][2] == 3) {
+            return player1;
+        }
+
+        if (chess[0][2] + chess[1][1] + chess[2][0] == 3) {
+            return player1;
+        }
+
+
+        if (chess[0][0] + chess[0][1] + chess[0][2] == -3) {
             return player2;
         }
 
-        if (chess[1][0] + chess[1][1] + chess[1][2] == -3){
+        if (chess[1][0] + chess[1][1] + chess[1][2] == -3) {
             return player2;
         }
 
-        if (chess[2][0] + chess[2][1] + chess[2][2] == -3){
+        if (chess[2][0] + chess[2][1] + chess[2][2] == -3) {
             return player2;
         }
 
 
-        if (chess[0][0] + chess[1][0] + chess[2][0] == -3){
+        if (chess[0][0] + chess[1][0] + chess[2][0] == -3) {
             return player2;
         }
 
-        if (chess[0][1] + chess[1][1] + chess[2][1] == -3){
+        if (chess[0][1] + chess[1][1] + chess[2][1] == -3) {
             return player2;
         }
 
-        if (chess[0][2] + chess[1][2] + chess[2][2] == -3){
+        if (chess[0][2] + chess[1][2] + chess[2][2] == -3) {
             return player2;
         }
 
-        if(chess[0][0] + chess[1][1] + chess[2][2] == -3){
+        if (chess[0][0] + chess[1][1] + chess[2][2] == -3) {
             return player2;
         }
 
-        if(chess[0][2] + chess[1][1] + chess[2][0] == -3){
+        if (chess[0][2] + chess[1][1] + chess[2][0] == -3) {
             return player2;
         }
         return "";
