@@ -3,7 +3,7 @@ import java.sql.*;
 public class DBUtil {
 
     // 获得驱动
-    static{
+    static {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -18,25 +18,25 @@ public class DBUtil {
 
 
     // 关流操作
-    public static void close(Connection conn, Statement stmt, ResultSet rs){
-        if(rs != null){
-            try{
+    public static void close(Connection conn, Statement stmt, ResultSet rs) {
+        if (rs != null) {
+            try {
                 rs.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
 
-        if(stmt != null){
-            try{
+        if (stmt != null) {
+            try {
                 stmt.close();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
 
-        if(conn != null){
-            try{
+        if (conn != null) {
+            try {
                 conn.close();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -46,7 +46,7 @@ public class DBUtil {
 
 
     // 查询用户
-    public static User select(Connection conn, String username){
+    public static User select(Connection conn, String username) {
         PreparedStatement preState = null;
         ResultSet rs = null;
         try {
@@ -54,7 +54,7 @@ public class DBUtil {
             preState.setString(1, username);
             rs = preState.executeQuery();
             User user = null;
-            while (rs.next()){
+            while (rs.next()) {
                 user = new User(rs.getString("username"), rs.getString("password"), rs.getInt("win"), rs.getInt("lose"), rs.getInt("tie"));
             }
             return user;
@@ -68,9 +68,9 @@ public class DBUtil {
 
 
     // 添加用户
-    public static boolean add(Connection conn, String username, String password){
+    public static boolean add(Connection conn, String username, String password) {
         PreparedStatement preState = null;
-        try{
+        try {
             preState = conn.prepareStatement("insert into client values(?, ?, ?, ?, ?)");
             preState.setString(1, username);
             preState.setString(2, password);
@@ -79,7 +79,7 @@ public class DBUtil {
             preState.setInt(5, 0);
             int change = preState.executeUpdate();
             return change == 1;
-        }catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
             DBUtil.close(null, preState, null);
@@ -88,9 +88,9 @@ public class DBUtil {
     }
 
     // 更新战局
-    public static boolean update(Connection conn, String username, int win, int lose, int tie){
+    public static boolean update(Connection conn, String username, int win, int lose, int tie) {
         PreparedStatement preState = null;
-        try{
+        try {
             User user = select(conn, username);
             preState = conn.prepareStatement("update client set win = ?, lose = ?, tie = ? where username = ?");
             preState.setInt(1, user.win + win);
@@ -99,7 +99,7 @@ public class DBUtil {
             preState.setString(4, username);
             int change = preState.executeUpdate();
             return change == 1;
-        }catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
             DBUtil.close(null, preState, null);
